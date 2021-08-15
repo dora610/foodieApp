@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+const fs = require('fs');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -13,7 +14,19 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use(logger('dev'));
+// app.use(logger('dev'));
+
+// split/dual loggin
+// log only 4xx and 5xx responses to console
+app.use(logger('dev', {
+  skip: function (req, res) { return res.statusCode < 400 }
+}))
+
+// log all requests to access.log
+app.use(logger('combined', {
+  stream: fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
+}))
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
