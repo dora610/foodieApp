@@ -14,20 +14,30 @@ body {
   align-items: center;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.container{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+}
+
 h1 {
   color: burlywood;
   text-shadow: 2px 2px 1px lightgrey;
 }
 .card{
-  margin: auto;
+  margin: 5px 20px;
   padding: 15px 10px;
   background: blanchedalmond;
-  width: 320px;
-  height: 520px;
+  width: 300px;
+  height: 525px;
   border-radius: 7px;
-  transition: all .25s ease-in-out ;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+  transform: translateY(0px);
+  transition: transform .5s ease-out .2s;
 }
 .card_text{
+  height: 30px;
   color: aliceblue;
   text-align: center;
   text-transform: capitalize;
@@ -35,9 +45,28 @@ h1 {
   text-shadow: 1px 1px 5px black;
   font-weight: bold;
   font-size: medium;
-  margin: 10px auto;
+  margin: 3px auto;
+  padding: 2px;
+}
+.btn__details{
+  opacity: 0;
+  border-radius: 5px;
+  border: 0;
+  padding: 5px 7px;
+  background: sandybrown;
+  color: #fff;
+  box-shadow: inset 2px 2px 2px rgba(255, 255, 255, 0.6),
+              inset -2px -2px 2px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  position: relative;
+  bottom: -20px;
+  transition: all .5s ease-in-out .3s;
+}
+.btn__details:hover{
+  background: rgb(252, 178, 114);
 }
 img {
+  height: 450px;
   width: 100%;
   margin: 0 auto;
   border: 1px solid #e1e1e1;
@@ -45,10 +74,15 @@ img {
   border-radius: 3px;
 }
 .card:hover {
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
-  /* position: relative;
-  top: -1px;
-  left: 0; */
   transform: translateY(-5px);
-  transition: all .5s ease-in-out .2s;
+  transition: transform .5s ease-in;
+}
+
+/* .img .card:hover{
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+} */
+.card:hover .btn__details{
+  bottom: -0;
+  opacity: 1;
+  transition: all .5s ease-in-out;
 }
